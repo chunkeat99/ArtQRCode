@@ -1,0 +1,98 @@
+<!doctype html>
+	<head>
+		<style>
+			/* CSS comes here */
+			body {
+			    padding:20px;
+			}
+			input {
+			    padding:5px;
+			    background-color:transparent;
+			    border:none;
+			    border-bottom:solid 4px #8c52ff;
+			    width:1000px;
+			    font-size:16px;
+			}
+			
+			.qr-btn {
+			    background-color:#8c52ff;
+			    padding:8px;
+			    color:white;
+			    cursor:pointer;
+			}
+		</style>
+		
+		<title>QR Code Generator</title>
+	</head>
+	<body>
+		<a href="https://chunkeat.me" target='_blank'><img src='https://raw.githubusercontent.com/chunkeat99/su/master/assets/img/logo.png?token=APTVSVLV3AESY23WWISPBBC7WHNCQ' width="100" height="50"></a>
+
+		<div style="text-align:center;">
+		<h3>QR Code Generator</h3>
+        <div><input id="qrcode" type="text" placeholder="Enter a link"/></div>
+        <br/>
+        <div>
+            <button class="qr-btn" onclick="generateQRCode()">Generate</button>
+		<button class="qr-btn" onclick="goBack()">Back</button>
+        </div>
+			</div>
+        <br>
+		<div style="text-align:center;">
+        <p id="qr-result">This is the QR code:</p>
+        <canvas id="qr-code" style="border:solid 4px #8c52ff;"></canvas>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+	<p>QR Code is registered trademarks of DENSO WAVE INCORPORATED in Japan and in other countries.</p>
+		</div>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+		<script>
+    var options = {
+        text: "https://github.com/252860883/ArtQRCode",
+        /**
+         * width,height 是输出图的宽高
+         * codeWidth,codeHeight 是二维码的宽高
+         * top,left 是二维码区域的定位
+         */
+        width: 500,
+        height: 500,
+        codeWidth: 320,
+        codeHeight: 320,
+        top: 85,
+        left: 80,
+        /**
+         * materials unit options
+         */
+        materials: {
+            border: "./materials/electron/border.png",
+            eye: "./materials/electron/eye.png",
+            row4: "./materials/electron/row4.png",
+            col4: "./materials/electron/col3.png",
+            row2col3: "./materials/electron/row2col3.png",
+            row3col2: "./materials/electron/row3col2.png",
+            col3: ["./materials/electron/col3.png", "./materials/electron/col3_2.png"],
+            row2col2: "./materials/electron/row2col2.png",
+            corner: "./materials/electron/corner.png",
+            row2: ["./materials/electron/row2.png", "./materials/electron/row2_2.png"],
+            col2: "./materials/electron/col2.png",
+            single: ["./materials/electron/single.png", "./materials/electron/single_2.png"],
+        }
+    }
+    /** when the artqrcode loaded, run this function */
+    function callBack(status) {
+        console.log(status) // [loaded|success]
+    }
+    var qrcode = new QRCode(document.getElementById("qrcode"), options, callBack);
+</script>
+<br>
+		
+
+        <footer  style="text-align:center;">
+  <a href="https://chunkeat.me/" target='_blank'>chunkeat.me</a><br>
+  Powered by, an <a href="https://me.chunkeat.me" target='_blank'>Idiot</a> from SKT, UTM
+  </footer>
+	</body>
+</html>
